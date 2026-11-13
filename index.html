@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Mental Health Score Prediction</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="card">
+    <header class="card-header">
+      <h1>AI Mental Health Score Prediction</h1>
+      <p>Enter the required information to predict the student's mental health score.</p>
+    </header>
+
+    <form id="predict-form" novalidate>
+      <fieldset>
+        <legend>Student profile</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="10" max="100" step="1" placeholder="e.g. 22" />
+            <span class="error" id="age-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender">
+              <option value="">Select gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <span class="error" id="gender-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" placeholder="e.g. India" autocomplete="country-name" />
+            <span class="error" id="country-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label for="academic_level">Academic Level</label>
+            <select id="academic_level" name="academic_level">
+              <option value="">Select academic level</option>
+              <option value="Undergraduate">Undergraduate</option>
+              <option value="Graduate">Graduate</option>
+              <option value="High School">High School</option>
+            </select>
+            <span class="error" id="academic_level-error" role="alert"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Social media use</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="most_used_platform">Most Used Platform</label>
+            <select id="most_used_platform" name="most_used_platform">
+              <option value="">Select platform</option>
+              <option value="Facebook">Facebook</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Snapchat">Snapchat</option>
+              <option value="Twitter">Twitter</option>
+              <option value="YouTube">YouTube</option>
+              <option value="TikTok">TikTok</option>
+              <option value="LINE">LINE</option>
+              <option value="KakaoTalk">KakaoTalk</option>
+              <option value="VKontakte">VKontakte</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="WeChat">WeChat</option>
+            </select>
+            <span class="error" id="most_used_platform-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label for="purpose_of_use">Purpose of Use</label>
+            <select id="purpose_of_use" name="purpose_of_use">
+              <option value="">Select purpose</option>
+              <option value="Networking">Networking</option>
+              <option value="Education">Education</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="News">News</option>
+            </select>
+            <span class="error" id="purpose_of_use-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label for="avg_daily_usage_hours">Average Daily Usage Hours</label>
+            <input type="number" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="24" step="any" placeholder="e.g. 5.5" />
+            <span class="error" id="avg_daily_usage_hours-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label for="daily_unlocks">Daily Unlocks</label>
+            <input type="number" id="daily_unlocks" name="daily_unlocks" min="0" step="1" placeholder="e.g. 20" />
+            <span class="error" id="daily_unlocks-error" role="alert"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Daily habits</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="study_hours">Study Hours</label>
+            <input type="number" id="study_hours" name="study_hours" min="0" max="24" step="any" placeholder="e.g. 6" />
+            <span class="error" id="study_hours-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label for="physical_activity_hours">Physical Activity Hours</label>
+            <input type="number" id="physical_activity_hours" name="physical_activity_hours" min="0" max="24" step="any" placeholder="e.g. 1" />
+            <span class="error" id="physical_activity_hours-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label for="sleep_hours_per_night">Sleep Hours Per Night</label>
+            <input type="number" id="sleep_hours_per_night" name="sleep_hours_per_night" min="0" max="24" step="any" placeholder="e.g. 7" />
+            <span class="error" id="sleep_hours_per_night-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label for="stress_level">Stress Level</label>
+            <select id="stress_level" name="stress_level">
+              <option value="">Select stress level</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+              <option value="Very High">Very High</option>
+              <option value="High">High</option>
+            </select>
+            <span class="error" id="stress_level-error" role="alert"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="form-message" id="form-message" role="alert" hidden></div>
+
+      <div class="actions">
+        <button type="submit" id="predict-btn" class="btn btn-primary">Predict</button>
+        <button type="button" id="reset-btn" class="btn btn-secondary">Reset</button>
+      </div>
+    </form>
+
+    <section class="result" id="result" aria-live="polite" hidden>
+      <p class="result-label">Mental Health Score</p>
+      <p class="result-score" id="result-score">0.00</p>
+      <p class="result-text">Your predicted mental health score is <strong id="result-inline">0.00</strong>.</p>
+      <p class="result-note">This is a machine learning prediction only. It is not a medical or clinical diagnosis.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
